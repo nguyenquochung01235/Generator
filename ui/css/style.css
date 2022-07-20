@@ -23,6 +23,8 @@ button {
 
 .header {
     background-color: #f27f0c;
+    /* background-color: #053f5c; */
+
 }
 
 .main-header {
@@ -38,7 +40,7 @@ button {
 }
 
 .logo > img {
-    width: 8rem;
+    width: 14rem;
 }
 
 .title {
@@ -50,6 +52,7 @@ button {
 }
 .title > h1{
     font-size: 50px;
+
 }
 
 .slogan {

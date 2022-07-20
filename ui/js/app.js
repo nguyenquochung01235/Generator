@@ -3,7 +3,7 @@ function alertFirtTime() {
     var isFired = localStorage.getItem('checkFired');
   
     if (isFired != '1'){
-        alert("Xin cảm ơn bạn đã sử dụng app !\nNếu trong quá trình sử dụng có lỗi gì thì mong bạn phản hồi \nHungNQ53 & DuocTM\nTụi mình cũng chỉ là tester làm cái web này nên mong các bản nhẹ tay\nThanks and best regard !!")
+        alert("Thanh you for using this app!\nIf there are any errors during use, please give feedback !\nHungNQ53 & DuocTM\nThanks and best regard !!")
         localStorage.setItem('checkFired', '1');
     }
   }
@@ -18,7 +18,7 @@ defaultFormInputElement = function (e) {
     
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.png">
+            <img class="ui-disabled" src="./img/more.jpg">
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 1}" >
                         
@@ -52,7 +52,7 @@ defaultFormInputElement = function (e) {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.png">
+            <img class="ui-disabled" src="./img/more.jpg">
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 2}" >
                     
@@ -72,7 +72,7 @@ defaultFormInputElement = function (e) {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.png">
+            <img class="ui-disabled" src="./img/more.jpg">
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 3}" >
@@ -94,7 +94,7 @@ defaultFormInputElement = function (e) {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.png">
+            <img class="ui-disabled" src="./img/more.jpg">
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 4}" >
@@ -124,7 +124,7 @@ defaultFormInputElement = function (e) {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.png">
+            <img class="ui-disabled" src="./img/more.jpg">
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 5}" >

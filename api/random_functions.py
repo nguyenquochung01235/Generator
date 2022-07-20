@@ -54,7 +54,7 @@ class api():
 				contend[contend.index(line)] = newrow
 
 				contend.insert(contend.index(newrow) + 5, "")
-				contend.insert(contend.index(newrow) + 6, """                <div class="type-option" onclick="getAndAppendValueType(this,'${idString}')" >""")
+				contend.insert(contend.index(newrow) + 6, """                <div class="type-option" style="display:none" onclick="getAndAppendValueType(this,'${idString}')" >""")
 				contend.insert(contend.index(newrow) + 7, "")
 				contend.insert(contend.index(newrow) + 8, "                    <h4>Customize</h4>")
 				contend.insert(contend.index(newrow) + 9, "")

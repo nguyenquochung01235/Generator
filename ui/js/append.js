@@ -32,7 +32,7 @@ $("#add-more").click(function (e) {
             $("#main-form").append(
                 `
                 <div class="group-input">
-                <img class="ui-disabled" src="../img/more.png">
+                <img class="ui-disabled" src="./img/more.jpg">
     
                     <div class="right-input ui-disabled">
                     
@@ -382,6 +382,7 @@ showValueTypeOptionBox = function (e) {
                     <p>Generate Text</p>
                 </div> 
 
+
                 <div class="type-option" style="display:none" onclick="getAndAppendValueType(this,'${idString}')" >
 
                     <h4>Customize</h4>
@@ -422,7 +423,6 @@ showValueTypeOptionBox = function (e) {
 
 closeValueTypeOptionBox = function (id) {
     var idOption = id.replace('value_type_','');
-    // console.log(idOption);
     $(".value-type-zone").css("display", "none");
     $(".value-type-zone").remove();
     $(`#value_type_${idOption}`).removeAttr("disabled");
@@ -548,6 +548,10 @@ getTemplateValueType = function (e) {
     }
     
  }
+
+
+
+
 
 
 

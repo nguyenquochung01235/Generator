@@ -132,8 +132,6 @@ function generate() {
   let fileName = $("#file_name").val();
   let typeFile = $("#format").val();
   var data_1 = $("#main-form").serialize().replaceAll("'","_").replaceAll("%22","_")
-  console.log(data_1);
-
   $('#loading').show();
   
   $.ajax({
@@ -196,11 +194,9 @@ function generate() {
           break;
       }
     $('#loading').hide();
-    var t1 = performance.now();
-    console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
     },
     error: function (e) {
-      alert("Opp! Đã có lỗi xảy ra !");
+      alert("Opp! Something wrong ! Please give feedback to HungNQ53 or DuocTM for support !");
 
     $('#loading').hide();
 
@@ -212,7 +208,6 @@ function generate() {
 function preview() {
   let typeFile = $("#format").val();
   var data_1 = $("#main-form").serialize().replaceAll("'","_").replaceAll("%22","_")
-  console.log(data_1);
   $('#loading').show();
   $.ajax({
     type: "POST",
@@ -245,7 +240,6 @@ function preview() {
                 data = data.replace("{numberrow}", index + 1);
                 index++;
               }
-              console.log(data);
               data = JSON.parse(data);
               // Header
               let thead ="";
@@ -298,7 +292,6 @@ function preview() {
                 data = data.replace("{numberrow}", index + 1);
                 index++;
               }
-              console.log(data);
               data = JSON.parse(data);
               // Header
               let thead ="";
@@ -382,7 +375,7 @@ function preview() {
 
     },
     error: function (e) {
-      alert("Opp! Đã có lỗi xảy ra !");
+      alert("Opp! Something wrong ! Please give feedback to HungNQ53 or DuocTM for support !");
       $('#loading').hide();
       removePreviewBox();
 
@@ -402,7 +395,7 @@ function checkDuplicateKey() {
   const duplicateElementa = toFindDuplicates(listArray);
 
   if (duplicateElementa.length > 0) {
-    alert("Key bị trùng !!!");
+    alert("Duplicate Key !!! !!!");
     return false;
   }
   return true;
@@ -418,7 +411,7 @@ function checkNumberOfRow() {
       }
     }
     if (num < 0) {
-      alert("Vui lòng nhập giá trị dương cho number of row");
+      alert("Please enter a positive value for number of row");
       $("#number").css("border", "2px solid red");
       $("#number_of_row").val(1000);
       $("#number").val(1000);
@@ -426,7 +419,7 @@ function checkNumberOfRow() {
     }
 
     if (num == '') {
-      alert("Vui lòng nhập giá trị cho number of row");
+      alert("Please enter a value for number of row");
       $("#number").css("border", "2px solid red");
       $("#number_of_row").val(1000);
       $("#number").val(1000);
@@ -506,15 +499,15 @@ function checkDataType() {
     listArray.push($(list[i]).val());
   }
   if(listArray.includes('array')){
-    alert("Định dạng file CSV, SQL chỉ hỗ trợ định dạnh Normal Value");
+    alert("CSV, SQL, EXCEL file format only supports Normal Value format");
     return false;
   }
   if(listArray.includes('object')){
-    alert("Định dạng file CSV, SQL chỉ hỗ trợ định dạnh Normal Value");
+    alert("CSV, SQL, EXCEL file format only supports Normal Value format");
     return false;
   }
   if(listArray.includes('arrobj')){
-    alert("Định dạng file CSV, SQL chỉ hỗ trợ định dạnh Normal Value");
+    alert("CSV, SQL, EXCEL file format only supports Normal Value format");
     return false;
   }
   return true;
@@ -529,7 +522,7 @@ function checkArrayNumberNull(){
   }
 
   if(listArray.includes("")){
-    alert("Số lượng phần tử của mảng không được để trống !!");
+    alert("The quantity element array cannot be empty !!");
     return false;
   }
   return true;
@@ -543,7 +536,7 @@ function checkKeyValueNull(){
   }
 
   if(listArray.includes("")){
-    alert("Key không được trống !");
+    alert("Key cannot be empty !");
     return false;
   }
   return true;
@@ -553,7 +546,7 @@ function checkKeyValueNull(){
 function checkFieldAble(){
   var list = document.getElementsByClassName("key");
   if(list.length == 0){
-    alert("Không có trường dữ liệu !!!\nVui lòng tạo trường dữ liệu để tạo data");
+    alert("No data fields!!!\nPlease create data field to generate data");
     return false;
   }
   return true
