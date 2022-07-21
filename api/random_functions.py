@@ -29,7 +29,7 @@ class api():
 
 		name = re.sub(" ", "", name)
 
-		setattr(db, name, data_list)
+		setattr(db, name.lower(), data_list)
 
 		file_db_in = open("./api/db.py",encoding="utf8",  mode="rt")
 		if debug:
@@ -49,14 +49,14 @@ class api():
 		file_database = open("./api/db.py", mode="a")
 		if debug:
 			file_database = open("db.py", mode="a")
-		file_database.write("\n\t\tself." + name + " = " + str(data_list) + "\n")
+		file_database.write("\n\t\tself." + name.lower() + " = " + str(data_list) + "\n")
 
 		file_API = open("./api/random_functions.py", mode="a")
 		if debug:
 			file_API = open("random_functions.py", mode="a")
-		file_API.write("\n\t\t###API for random " + name + " ###")
+		file_API.write("\n\t\t###API for random " + name.lower() + " ###")
 		file_API.write("\n\tdef random_" + name.lower() + "(self, args= [], db = database()):")
-		file_API.write("\n\t\treturn random.choice(db." + name + ")\n")
+		file_API.write("\n\t\treturn random.choice(db." + name.lower() + ")\n")
 
 		file_fe_in = open("./ui/js/append.js", mode="rt")
 		if debug:
@@ -652,25 +652,7 @@ class api():
 				result += "-"
 		return result
 
-	# def random_userformat(self, args):
-	# 	"""
-	# 	:param args: args[0]: hardcode
-	# 				 args[1]: softcode
-	# 	:return:
-	# 	"""
-	# 	result = args[0]
-	# 	for c in args[1]:
-	# 		if c in string.digits:
-	# 			result += random.choice(string.digits)
-	# 		elif c in string.ascii_lowercase:
-	# 			result += random.choice(string.ascii_lowercase)
-	# 		elif c in string.ascii_uppercase:
-	# 			result += random.choice(string.ascii_uppercase)
-	# 		elif c in string.punctuation:
-	# 			result += random.choice(string.punctuation)
-	# 	return result
 
-
-		###API for random abc ###
-	def random_abc(self, args= [], db = database()):
-		return random.choice(db.abc)
+		###API for random test_data ###
+	def random_test_data(self, args= [], db = database()):
+		return random.choice(db.test_data)

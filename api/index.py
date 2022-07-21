@@ -20,7 +20,7 @@ def createField(data):
 			tmp_data.update({"dataType": get_datatype(data[i + 1])})
 			key_parent = tmpKey
 			try:
-				tmp_data.update({"valueType": get_valuetype(data[i + 2])})
+				tmp_data.update({"valueType": get_valuetype(data[i + 2]).lower()})
 			except:
 				pass
 
@@ -43,7 +43,7 @@ def createField(data):
 			key_parent = "root"
 			tmpKey = tmp_data["keyName"]
 			try:
-				tmp_data.update({"valueType": get_valuetype(data[i + 2])})
+				tmp_data.update({"valueType": get_valuetype(data[i + 2]).lower()})
 			except:
 				pass
 
@@ -233,17 +233,15 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
-@app.route("/", methods = ["GET", "POST"])
+@app.route("/", methods = ["GET"])
 @cross_origin()
 def test_serve():
 	return "Server is running"
 
-@app.route("/data/render", methods = ["GET","POST"])
+@app.route("/data/render", methods = ["POST"])
 @cross_origin()
 def render_data():
 	data = request.form.get('dataForm')
-	data = "number_of_row=100&format_file=JSON&sql_table_name=&key_1658370962372=id&data_type_1658370962372=normal&value_type_1658370962372=abc"
-
 	result = []
 	try:
 		if db_changed:
@@ -280,13 +278,11 @@ def render_data():
 		return export_json_file(result)
 
 
-@app.route("/updatedb", methods = ["GET","POST"])
+@app.route("/updatedb", methods = ["POST"])
 @cross_origin()
 def update_database():
 
 	data = request.form.get('dataForm')
-	data ='[ { "abc": "data_1" }, { "abc": "data_2" }, { "abc": "data_3" }, { "abc": "data_4" }, { "abc": "data_5" }, { "abc": "data_6" }, { "abc": "data_7" }, { "abc": "data_8" }, { "abc": "data_9" }, { "abc": "data_10" } ]'
-
 	dict_data = json.loads(data)
 
 	db_function = api()
