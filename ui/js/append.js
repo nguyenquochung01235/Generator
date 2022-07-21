@@ -384,15 +384,6 @@ showValueTypeOptionBox = function (e) {
                     <p>Generate Text</p>
                 </div> 
 
-
-                <div class="type-option" onclick="getAndAppendValueType(this,'${idString}')" >
-
-                    <h4>Test_data</h4>
-
-                    <p>Customize data from user</p>
-
-                </div>
-
                 <div class="type-option" onclick="getAndAppendValueType(this,'${idString}')" >
 
                     <h4>Customize</h4>
@@ -558,6 +549,10 @@ getTemplateValueType = function (e) {
     }
     
  }
+
+
+
+
 
 
 

@@ -125,262 +125,263 @@ function exportToXMLFile(jsonData, fileName) {
 
 
 function generate() {
- 
-  var t0 = performance.now();
+  if(checkValueType() != false){
+    let fileName = $("#file_name").val();
+    let typeFile = $("#format").val();
+    var data_1 = $("#main-form").serialize().replaceAll("'","_").replaceAll("%22","_")
+    $('#loading').show();
+    
+    $.ajax({
+      type: "POST",
+      url: ENV_api_host,
+      data: {
+        dataForm: data_1,
+      },
+      success: function (data) {
+        var string = data;
+        var index = 0;
   
-  
-  let fileName = $("#file_name").val();
-  let typeFile = $("#format").val();
-  var data_1 = $("#main-form").serialize().replaceAll("'","_").replaceAll("%22","_")
-  $('#loading').show();
-  
-  $.ajax({
-    type: "POST",
-    url: ENV_api_host,
-    data: {
-      dataForm: data_1,
-    },
-    success: function (data) {
-      var string = data;
-      var index = 0;
-
-      while (string.includes("{numberrow}")) {
-        string = string.replace("{numberrow}", index + 1);
-        index++;
-      }
-      data = string;
-      switch (typeFile) {
-        case "JSON":
-          var jsonStr = data;
-          var jsonObj = JSON.parse(jsonStr);
-          var jsonPretty = JSON.stringify(jsonObj, null, "\t");
-          jsonData = JSON.parse(jsonPretty);
-
-          exportToJsonFile(jsonData, fileName);
-
-          break;
-
-        case "CSV":
-      
-          if(checkDataType() != false){
+        while (string.includes("{numberrow}")) {
+          string = string.replace("{numberrow}", index + 1);
+          index++;
+        }
+        data = string;
+        switch (typeFile) {
+          case "JSON":
             var jsonStr = data;
             var jsonObj = JSON.parse(jsonStr);
             var jsonPretty = JSON.stringify(jsonObj, null, "\t");
             jsonData = JSON.parse(jsonPretty);
-            exportToCsvFile(jsonData, fileName);
-          }
-          break;
-
-        case "EXCEL":
-          var jsonStr = data;
-          var jsonObj = JSON.parse(jsonStr);
-          if(checkDataType() != false){
-            exportToExcelFile(data, fileName)
-          }
-          break;
-
-        case "SQL":
-          if(checkDataType() != false){
-            exportToSqlFile(data, fileName);
-          }
-          
-          break;
-
-        case "XML":
-          exportToXMLFile(data,fileName)
-          break; 
-          
-        default:
-          break;
-      }
-    $('#loading').hide();
-    },
-    error: function (e) {
-      alert("Opp! Something wrong ! Please give feedback to HungNQ53 or DuocTM for support !");
-
-    $('#loading').hide();
-
-    },
-    
-  });
+  
+            exportToJsonFile(jsonData, fileName);
+  
+            break;
+  
+          case "CSV":
+        
+            if(checkDataType() != false){
+              var jsonStr = data;
+              var jsonObj = JSON.parse(jsonStr);
+              var jsonPretty = JSON.stringify(jsonObj, null, "\t");
+              jsonData = JSON.parse(jsonPretty);
+              exportToCsvFile(jsonData, fileName);
+            }
+            break;
+  
+          case "EXCEL":
+            var jsonStr = data;
+            var jsonObj = JSON.parse(jsonStr);
+            if(checkDataType() != false){
+              exportToExcelFile(data, fileName)
+            }
+            break;
+  
+          case "SQL":
+            if(checkDataType() != false){
+              exportToSqlFile(data, fileName);
+            }
+            
+            break;
+  
+          case "XML":
+            exportToXMLFile(data,fileName)
+            break; 
+            
+          default:
+            break;
+        }
+      $('#loading').hide();
+      },
+      error: function (e) {
+        alert("Opp! Something wrong ! Please give feedback to HungNQ53 or DuocTM for support !");
+  
+      $('#loading').hide();
+  
+      },
+      
+    });
+  }
+  
   
 }
 function preview() {
-  let typeFile = $("#format").val();
-  var data_1 = $("#main-form").serialize().replaceAll("'","_").replaceAll("%22","_")
-  $('#loading').show();
-  $.ajax({
-    type: "POST",
-    url: ENV_api_host,
-    data: { 
-      dataForm: data_1,
-    },
-    success: function (data) {
-      var string = data;
-      
-      switch (typeFile) {
-        case "JSON":
-          var index = 0;
-
-          while (string.includes("{numberrow}")) {
-            string = string.replace("{numberrow}", index + 1);
-            index++;
-          }
-    
-          data = JSON.parse(string);
-          
-          $("#preview-box").text(JSON.stringify(data,null,4));
-          
-          break;
-      
-        case "CSV":
-          if(checkDataType() != false){
-              let index = 0;
-              while (data.includes("{numberrow}")) {
-                data = data.replace("{numberrow}", index + 1);
-                index++;
-              }
-              data = JSON.parse(data);
-              // Header
-              let thead ="";
-              keyArray = Object.keys(data[0])
-              
-              keyArray.forEach(element => {
-                thead = thead + `<td>${element}</td>`
-              });
-
-              // Body
-              let tbody = ""
-              for (let i = 0; i < data.length; i++) {
-                
-                valueArray = Object.values(data[i]);
-                let trow = ""
-                valueArray.forEach(element => {
-                  trow = trow + `<td>${element}\t</td>`
-                });
-                tbody = tbody +  `<tr>${trow}</tr>`
-              }
-              
-
-              
-              
-                $("#preview-box").replaceWith(
-                  `
-                    <div id = "preview-box">
-                    
-                      <table id="csv-table">
-                          <thead>
-                            ${thead}
-                          </thead>
-                          <tbody>
-                              ${tbody}
-                          </tbody>
-                      </table>
-                      
-                    </div>
-                  `
-                );
-          }else{
-            removePreviewBox(); 
-          }
-          break;
-
-        case "EXCEL":
-          if(checkDataType() != false){
-              let index = 0;
-              while (data.includes("{numberrow}")) {
-                data = data.replace("{numberrow}", index + 1);
-                index++;
-              }
-              data = JSON.parse(data);
-              // Header
-              let thead ="";
-              keyArray = Object.keys(data[0])
-              
-              keyArray.forEach(element => {
-                thead = thead + `<td>${element}</td>`
-              });
-
-              // Body
-              let tbody = ""
-              for (let i = 0; i < data.length; i++) {
-                
-                valueArray = Object.values(data[i]);
-                let trow = ""
-                valueArray.forEach(element => {
-                  trow = trow + `<td>${element}\t</td>`
-                });
-                tbody = tbody +  `<tr>${trow}</tr>`
-              }
-              
-
-              
-              
-                $("#preview-box").replaceWith(
-                  `
-                    <div id = "preview-box">
-                    
-                      <table id="csv-table">
-                          <thead>
-                            ${thead}
-                          </thead>
-                          <tbody>
-                              ${tbody}
-                          </tbody>
-                      </table>
-                      
-                    </div>
-                  `
-                );
-          }else{
-            removePreviewBox(); 
-          }
-          break;
-
-        case "SQL":
-          if(checkDataType() != false){
-            let index = 0;
-            while (data.includes("{numberrow}")) {
-              data = data.replace("{numberrow}", index + 1);
+    let typeFile = $("#format").val();
+    var data_1 = $("#main-form").serialize().replaceAll("'","_").replaceAll("%22","_")
+    $('#loading').show();
+    $.ajax({
+      type: "POST",
+      url: ENV_api_host,
+      data: { 
+        dataForm: data_1,
+      },
+      success: function (data) {
+        var string = data;
+        
+        switch (typeFile) {
+          case "JSON":
+            var index = 0;
+  
+            while (string.includes("{numberrow}")) {
+              string = string.replace("{numberrow}", index + 1);
               index++;
             }
-            data = data.replaceAll("'[", "[").replaceAll("]'", "]");
-            data = data.replaceAll("'{", "{").replaceAll("}'", "}");
-            data = data.replaceAll(";", ";\n\n");
-
-            $("#preview-box").append(data)
-          }else{
-            removePreviewBox();
-          }
-          
-
-          break;
-          
-        case "XML":
-          let xml_index = 0;
-          while (data.includes("{numberrow}")) {
-            data = data.replace("{numberrow}", xml_index + 1);
-            xml_index++;
-          }
-          let InputJSON = `{"body":{"entry":`  + data + `}}`;
-          let output = eval("OBJtoXML("+InputJSON+");")
-          let xmlStr = `<?xml version='1.0' encoding='UTF-8'?>\n`+ formatXml(output)
-          $("#preview-box").text(xmlStr)
-          break;
-
-        default:
-          break;
-      }
-    $('#loading').hide();
-
-    },
-    error: function (e) {
-      alert("Opp! Something wrong ! Please give feedback to HungNQ53 or DuocTM for support !");
+      
+            data = JSON.parse(string);
+            
+            $("#preview-box").text(JSON.stringify(data,null,4));
+            
+            break;
+        
+          case "CSV":
+            if(checkDataType() != false){
+                let index = 0;
+                while (data.includes("{numberrow}")) {
+                  data = data.replace("{numberrow}", index + 1);
+                  index++;
+                }
+                data = JSON.parse(data);
+                // Header
+                let thead ="";
+                keyArray = Object.keys(data[0])
+                
+                keyArray.forEach(element => {
+                  thead = thead + `<td>${element}</td>`
+                });
+  
+                // Body
+                let tbody = ""
+                for (let i = 0; i < data.length; i++) {
+                  
+                  valueArray = Object.values(data[i]);
+                  let trow = ""
+                  valueArray.forEach(element => {
+                    trow = trow + `<td>${element}\t</td>`
+                  });
+                  tbody = tbody +  `<tr>${trow}</tr>`
+                }
+                
+  
+                
+                
+                  $("#preview-box").replaceWith(
+                    `
+                      <div id = "preview-box">
+                      
+                        <table id="csv-table">
+                            <thead>
+                              ${thead}
+                            </thead>
+                            <tbody>
+                                ${tbody}
+                            </tbody>
+                        </table>
+                        
+                      </div>
+                    `
+                  );
+            }else{
+              removePreviewBox(); 
+            }
+            break;
+  
+          case "EXCEL":
+            if(checkDataType() != false){
+                let index = 0;
+                while (data.includes("{numberrow}")) {
+                  data = data.replace("{numberrow}", index + 1);
+                  index++;
+                }
+                data = JSON.parse(data);
+                // Header
+                let thead ="";
+                keyArray = Object.keys(data[0])
+                
+                keyArray.forEach(element => {
+                  thead = thead + `<td>${element}</td>`
+                });
+  
+                // Body
+                let tbody = ""
+                for (let i = 0; i < data.length; i++) {
+                  
+                  valueArray = Object.values(data[i]);
+                  let trow = ""
+                  valueArray.forEach(element => {
+                    trow = trow + `<td>${element}\t</td>`
+                  });
+                  tbody = tbody +  `<tr>${trow}</tr>`
+                }
+                
+  
+                
+                
+                  $("#preview-box").replaceWith(
+                    `
+                      <div id = "preview-box">
+                      
+                        <table id="csv-table">
+                            <thead>
+                              ${thead}
+                            </thead>
+                            <tbody>
+                                ${tbody}
+                            </tbody>
+                        </table>
+                        
+                      </div>
+                    `
+                  );
+            }else{
+              removePreviewBox(); 
+            }
+            break;
+  
+          case "SQL":
+            if(checkDataType() != false){
+              let index = 0;
+              while (data.includes("{numberrow}")) {
+                data = data.replace("{numberrow}", index + 1);
+                index++;
+              }
+              data = data.replaceAll("'[", "[").replaceAll("]'", "]");
+              data = data.replaceAll("'{", "{").replaceAll("}'", "}");
+              data = data.replaceAll(";", ";\n\n");
+  
+              $("#preview-box").append(data)
+            }else{
+              removePreviewBox();
+            }
+            
+  
+            break;
+            
+          case "XML":
+            let xml_index = 0;
+            while (data.includes("{numberrow}")) {
+              data = data.replace("{numberrow}", xml_index + 1);
+              xml_index++;
+            }
+            let InputJSON = `{"body":{"entry":`  + data + `}}`;
+            let output = eval("OBJtoXML("+InputJSON+");")
+            let xmlStr = `<?xml version='1.0' encoding='UTF-8'?>\n`+ formatXml(output)
+            $("#preview-box").text(xmlStr)
+            break;
+  
+          default:
+            break;
+        }
       $('#loading').hide();
-      removePreviewBox();
-
-    },
-  });
+  
+      },
+      error: function (e) {
+        alert("Opp! Something wrong ! Please give feedback to HungNQ53 or DuocTM for support !");
+        $('#loading').hide();
+        removePreviewBox();
+  
+      },
+    });
+  
+  
 }
 
 
@@ -448,8 +449,10 @@ $("#preview").click(function () {
     if (checkKeyValueNull()) {
       if (checkDuplicateKey() && checkNumberOfRow()) {
         if(checkArrayNumberNull()){
-          preview();
-         appendReviewForm();
+          if(checkValueType()){
+            preview();
+            appendReviewForm();
+          }
         }
         
       }
@@ -553,7 +556,23 @@ function checkFieldAble(){
 }
 
 
+function checkValueType() { 
+  var list = document.getElementsByClassName("value");
+  var listArray = [];
+  for (var i = 0; i < list.length; i++) {
+    if($(list[i]).attr("disabled")){
 
+    }else{
+      listArray.push($(list[i]).val());
+    }
+  }
+  if(listArray.includes("Select Value Type")){
+    alert("Please select value type to generate data");
+    return false;
+  }
+
+  return true;
+ }
 
 
 function OBJtoXML(obj) {

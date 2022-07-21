@@ -20,7 +20,7 @@ def createField(data):
 			tmp_data.update({"dataType": get_datatype(data[i + 1])})
 			key_parent = tmpKey
 			try:
-				tmp_data.update({"valueType": get_valuetype(data[i + 2])})
+				tmp_data.update({"valueType": get_valuetype(data[i + 2]).lower()})
 			except:
 				pass
 
@@ -43,7 +43,7 @@ def createField(data):
 			key_parent = "root"
 			tmpKey = tmp_data["keyName"]
 			try:
-				tmp_data.update({"valueType": get_valuetype(data[i + 2])})
+				tmp_data.update({"valueType": get_valuetype(data[i + 2]).lower()})
 			except:
 				pass
 
