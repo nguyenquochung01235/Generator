@@ -23,7 +23,8 @@ class api():
 		debug = False
 
 		db = database()
-
+ 
+ 
 		data_list = self.formatData(data)
 		name_html = name.capitalize()
 
@@ -653,6 +654,3 @@ class api():
 		return result
 
 
-		###API for random test_data ###
-	def random_test_data(self, args= [], db = database()):
-		return random.choice(db.test_data)
