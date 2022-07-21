@@ -385,7 +385,7 @@ showValueTypeOptionBox = function (e) {
                 </div> 
 
 
-                <div class="type-option" style="display:none" onclick="getAndAppendValueType(this,'${idString}')" >
+                <div class="type-option" onclick="getAndAppendValueType(this,'${idString}')" >
 
                     <h4>Test_data</h4>
 
