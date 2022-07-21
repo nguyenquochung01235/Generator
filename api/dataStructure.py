@@ -5,8 +5,6 @@ class dataStructure ():
 
 	def __init__(self):
 		self.data = None
-		self.parent = None
-		self.value_type = None
 
 	def createCommonData(self, FieldName):
 		if self.data is None:

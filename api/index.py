@@ -1,15 +1,13 @@
-from flask import Flask
+import time
+
 from flask_cors import CORS, cross_origin
-from random_functions import api
-from dataStructure import dataStructure
+from flask import Flask, request
 import re
 import json
-from flask import Flask, request
-
-class connect:
-	def __init__(self):
-		pass
-
+import random
+from random_functions import api
+from dataStructure import dataStructure
+from db import database
 
 def createField(data):
 	lField = []
@@ -30,6 +28,7 @@ def createField(data):
 			try:
 				for j in range(i + 3, i + 6):
 					if isOption(data[j]):
+						# if get_option(data[j]) != "":
 						option.append(get_option(data[j]))
 			except:
 				pass
@@ -52,6 +51,7 @@ def createField(data):
 			try:
 				for j in range(i + 1, i + 6):
 					if isOption(data[j]):
+						# if get_option(data[j]) != "":
 						option.append(get_option(data[j]))
 			except:
 				pass
@@ -67,38 +67,37 @@ def createField(data):
 	return lField
 
 def decodeHtml(data):
-   data = re.sub("%20", " ", data)
-   data = re.sub("%21", "!", data)
-   data = re.sub("%22", '"', data)
-   data = re.sub("%23", "#", data)
-   data = re.sub("%24", "$", data)
-   data = re.sub("%25", "%", data)
-   data = re.sub("%26", "&", data)
-   data = re.sub("%27", "'", data)
-   data = re.sub("%28", "(", data)
-   data = re.sub("%29", ")", data)
-   data = re.sub("%2A", "*", data)
-   data = re.sub("%2B", "+", data)
-   data = re.sub("%2C", ",", data)
-   data = re.sub("%2D", "-", data)
-   data = re.sub("%2E", ".", data)
-   data = re.sub("%2F", "/", data)
+	data = re.sub("%20", " ", data)
+	data = re.sub("%21", "!", data)
+	data = re.sub("%22", '"', data)
+	data = re.sub("%23", "#", data)
+	data = re.sub("%24", "$", data)
+	data = re.sub("%25", "%", data)
+	data = re.sub("%26", "&", data)
+	data = re.sub("%27", "'", data)
+	data = re.sub("%28", "(", data)
+	data = re.sub("%29", ")", data)
+	data = re.sub("%2A", "*", data)
+	data = re.sub("%2B", "+", data)
+	data = re.sub("%2C", ",", data)
+	data = re.sub("%2D", "-", data)
+	data = re.sub("%2E", ".", data)
+	data = re.sub("%2F", "/", data)
 
-   data = re.sub("%3A", ":", data)
-   data = re.sub("%3B", ";", data)
-   data = re.sub("%3C", "<", data)
-   data = re.sub("%3D", "=", data)
-   data = re.sub("%3E", ">", data)
-   data = re.sub("%3F", "?", data)
-   data = re.sub("%40", "@", data)
-   
+	data = re.sub("%3A", ":", data)
+	data = re.sub("%3B", ";", data)
+	data = re.sub("%3C", "<", data)
+	data = re.sub("%3D", "=", data)
+	data = re.sub("%3E", ">", data)
+	data = re.sub("%3F", "?", data)
+	data = re.sub("%40", "@", data)
 
-   return data
+	return data
 
 
-def generate_json_format(d):
+def generate_json_format(tmpdata):
 
-	data = decodeHtml(d)
+	data = decodeHtml(tmpdata)
 
 	data = re.split("&", data)
 
@@ -114,7 +113,6 @@ def generate_json_format(d):
 
 			elif element["dataType"] == "array":
 				obj_dataStructure.createArrayData(element["keyName"])
-				rand_func = get_random_function(element)
 				for i in range(int(element["option"][0])):
 					obj_dataStructure.updateArrayData(element["keyName"], get_random_value(element))
 
@@ -158,21 +156,27 @@ def get_random_function(element):
 	random = api()
 	name = re.sub(" ", "", element["valueType"].lower())
 	apiName = "random_" + name
-	rand_func = getattr(random, apiName, random.random_randomlist)
+	rand_func = getattr(random, apiName, None)
 	return rand_func
 
-def get_random_value(element):
-	parameter = None
-	value = ""
-	rand_func = get_random_function(element)
+def get_parameter(element):
 	try:
 		if element["dataType"] == "arrobj" or element["dataType"] == "array":
 			parameter = element["option"][1:]
 		else:
 			parameter = element["option"]
-		value = rand_func(parameter)
 	except:
-		value = rand_func()
+		parameter = []
+	return parameter
+
+def get_random_value(element):
+	rand_func = get_random_function(element)
+	parameter = get_parameter(element)
+
+	if not rand_func:
+		value = random.choice(getattr(db, element["valueType"]))
+	else:
+		value = rand_func(args=parameter, db=db)
 	return value
 
 def get_value_from_response(row):
@@ -229,36 +233,25 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
-@app.route("/", methods = ["GET"])
+@app.route("/", methods = ["GET", "POST"])
 @cross_origin()
 def test_serve():
-	return "Server is running";
+	return "Server is running"
 
-@app.route("/updatedb", methods = ["POST"])
-@cross_origin()
-def update_database():
-
-	data = request.form.get('dataForm')
-	dict_data = json.loads(data)
-
-	db = api()
-	ldata = []
-	for name in dict_data[0]:
-		pass
-
-	for element in dict_data:
-		ldata.append(element[name])
-
-	if db.updateDatabase(name=name, data=ldata):
-		return "Update successfully, Please waiting for reload page"
-	else:
-		return "ERROR: This Field already had in database"
-
-@app.route("/data/render", methods = ["POST"])
+@app.route("/data/render", methods = ["GET","POST"])
 @cross_origin()
 def render_data():
 	data = request.form.get('dataForm')
+	data = "number_of_row=100&format_file=JSON&sql_table_name=&key_1658370962372=id&data_type_1658370962372=normal&value_type_1658370962372=abc"
+
 	result = []
+	try:
+		if db_changed:
+			pass
+	except:
+		global db
+		db = database()
+
 	number_of_row = re.split("&",data)[0]
 	number_of_row = int(re.findall("=\d*", number_of_row)[0][1:])
 
@@ -287,9 +280,36 @@ def render_data():
 		return export_json_file(result)
 
 
+@app.route("/updatedb", methods = ["GET","POST"])
+@cross_origin()
+def update_database():
+
+	data = request.form.get('dataForm')
+	dict_data = json.loads(data)
+
+	db_function = api()
+	ldata = []
+	for name in dict_data[0]:
+		pass
+
+	for element in dict_data:
+		ldata.append(element[name])
+
+	status, newdb = db_function.updateDatabase(name=name, data=ldata)
+	if status:
+		msg = "Updated your field to database"
+	else:
+		msg = "ERROR: this field already had in database"
+	global db
+	db = newdb
+
+	global db_changed
+	db_changed = status
+
+	return msg
 
 def export_json_file(result):
-   return str(result).replace("'", '"')
+	return str(result).replace("'", '"')
 
 def export_sql_file(result, table_name):
 	sql_file = ""
