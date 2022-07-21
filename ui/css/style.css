@@ -67,7 +67,7 @@ h6 {
 .content {
     padding-top: 10px;
     margin-left:79px ;
-    /* max-width: 1440px; */
+    max-width: 1440px;
     overflow-y: auto;   
     height: 75%;
 }
