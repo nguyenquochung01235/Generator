@@ -70,22 +70,31 @@
         </div>
         <hr>
         <div class="footer">
-            <label for="">File name: </label>
-            <input type="text" id="file_name" value="auto-generate-data">
-            <label for="">Number of row: </label>
-            <input type="number" id="number" value="100"  min="1" max="5000">
-            <label for="">Format data: </label>
-            <select name="format" id="format">
-                <option value="JSON">JSON</option>
-                <option value="CSV">CSV</option>
-                <option value="EXCEL">EXCEL</option>
-                <option value="SQL">SQL</option>
-                <option value="XML">XML</option>
-            </select>
-            <label for="">Feature: </label>
-            <button id="preview">Preview Data</button>
-            <button id="download">Generate File</button>
-            <button id="add_new_dataset"  onclick="addNewDataset()">Add new dataset</button>
+            <div class="footer-template">
+                <label for="">Template:  </label>
+                <button>User Information</button>
+                <button>User Information Advanced</button>
+                <button>Personal Information</button>
+                <button>Product</button>
+            </div>
+            <div class="footer-option">
+                <label for="">File name: </label>
+                <input type="text" id="file_name" value="auto-generate-data">
+                <label for="">Number of row: </label>
+                <input type="number" id="number" value="100"  min="1" max="5000">
+                <label for="">Format data: </label>
+                <select name="format" id="format">
+                    <option value="JSON">JSON</option>
+                    <option value="CSV">CSV</option>
+                    <option value="EXCEL">EXCEL</option>
+                    <option value="SQL">SQL</option>
+                    <option value="XML">XML</option>
+                </select>
+                <label for="">Feature: </label>
+                <button id="preview">Preview Data</button>
+                <button id="download">Generate File</button>
+                <button id="add_new_dataset"  onclick="addNewDataset()">Add new dataset</button>
+            </div>
         </div>
 
     </div>

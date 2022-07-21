@@ -69,4 +69,3 @@ class database():
 		self.programmingLanguage = ["Python", "JavaScript", "Java", "C", "C", "C++", "PHP"]
 
 		self.month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-

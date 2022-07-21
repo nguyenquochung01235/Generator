@@ -54,7 +54,7 @@ class api():
 				contend[contend.index(line)] = newrow
 
 				contend.insert(contend.index(newrow) + 5, "")
-				contend.insert(contend.index(newrow) + 6, """                <div class="type-option" style="display:none" onclick="getAndAppendValueType(this,'${idString}')" >""")
+				contend.insert(contend.index(newrow) + 6, """                <div class="type-option" onclick="getAndAppendValueType(this,'${idString}')" >""")
 				contend.insert(contend.index(newrow) + 7, "")
 				contend.insert(contend.index(newrow) + 8, "                    <h4>Customize</h4>")
 				contend.insert(contend.index(newrow) + 9, "")
@@ -601,22 +601,4 @@ class api():
 			else:
 				result += "-"
 		return result
-
-	# def random_userformat(self, args):
-	# 	"""
-	# 	:param args: args[0]: hardcode
-	# 				 args[1]: softcode
-	# 	:return:
-	# 	"""
-	# 	result = args[0]
-	# 	for c in args[1]:
-	# 		if c in string.digits:
-	# 			result += random.choice(string.digits)
-	# 		elif c in string.ascii_lowercase:
-	# 			result += random.choice(string.ascii_lowercase)
-	# 		elif c in string.ascii_uppercase:
-	# 			result += random.choice(string.ascii_uppercase)
-	# 		elif c in string.punctuation:
-	# 			result += random.choice(string.punctuation)
-	# 	return result
 
