@@ -651,3 +651,7 @@ class api():
 			else:
 				result += "-"
 		return result
+
+		###API for random TEST_DATA ###
+	def random_test_data(self, args= [], db = database()):
+		return random.choice(db.TEST_DATA)
