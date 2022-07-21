@@ -276,6 +276,21 @@ showValueTypeOptionBox = function (e) {
                     <h4>Product Grocery</h4>
                     <p>Generate product grocery name</p>
                 </div>
+               
+                <div class="type-option" aria-label="Product" onclick="getAndAppendValueType(this,'${idString}')" >
+                    <h4>Clother Product</h4>
+                    <p>Generate product grocery name</p>
+                </div>
+                
+                <div class="type-option" aria-label="Product" onclick="getAndAppendValueType(this,'${idString}')" >
+                    <h4>Electronic Product</h4>
+                    <p>Generate product grocery name</p>
+                </div>
+
+                <div class="type-option" aria-label="Product" onclick="getAndAppendValueType(this,'${idString}')" >
+                    <h4>Food Product</h4>
+                    <p>Generate product grocery name</p>
+                </div>
 
                 <div class="type-option" aria-label="Address" onclick="getAndAppendValueType(this,'${idString}')" >
                     <h4>Street Name</h4>

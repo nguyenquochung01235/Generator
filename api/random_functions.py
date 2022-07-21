@@ -654,3 +654,15 @@ class api():
 		return result
 
 
+
+	###API for random clotherProduct ###
+	def random_clotherproduct(self, args= [], db = database()):
+		return random.choice(db.clotherProduct)
+
+	###API for random electronicproduct ###
+	def random_electronicproduct(self, args= [], db = database()):
+		return random.choice(db.electronicproduct)
+
+	###API for random foodproduct ###
+	def random_foodproduct(self, args= [], db = database()):
+		return random.choice(db.foodproduct)
