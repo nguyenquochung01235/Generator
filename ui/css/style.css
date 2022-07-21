@@ -508,8 +508,16 @@ input {
 }
 
 .footer-template > label{
-    
+    color: #fff;
     margin-right: 10px;
+}
+.footer-template > button{
+    background-color: #ffaa55;
+    color: #fff;
+    border: none;
+    padding: 3px 20px;
+    border-radius: 2px;
+    font-weight: 700;
 }
 
 .footer-option{

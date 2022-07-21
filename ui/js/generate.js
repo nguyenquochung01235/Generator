@@ -414,16 +414,16 @@ function checkNumberOfRow() {
     if (num < 0) {
       alert("Please enter a positive value for number of row");
       $("#number").css("border", "2px solid red");
-      $("#number_of_row").val(1000);
-      $("#number").val(1000);
+      $("#number_of_row").val(100);
+      $("#number").val(100);
       return false;
     }
 
     if (num == '') {
       alert("Please enter a value for number of row");
       $("#number").css("border", "2px solid red");
-      $("#number_of_row").val(1000);
-      $("#number").val(1000);
+      $("#number_of_row").val(100);
+      $("#number").val(100);
       return false;
     }
     return true;

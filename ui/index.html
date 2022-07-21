@@ -72,16 +72,16 @@
         <div class="footer">
             <div class="footer-template">
                 <label for="">Template:  </label>
-                <button>User Information</button>
-                <button>User Information Advanced</button>
-                <button>Personal Information</button>
-                <button>Product</button>
+                <button class="template-option" style="background-color: #f27f0c;" onclick="choseTempalte(this)">User Information</button>
+                <button class="template-option" onclick="choseTempalte(this)">API User Testing</button>
+                <button class="template-option" onclick="choseTempalte(this)">Personal Information</button>
+                <button class="template-option" onclick="choseTempalte(this)">Product</button>
             </div>
             <div class="footer-option">
                 <label for="">File name: </label>
                 <input type="text" id="file_name" value="auto-generate-data">
                 <label for="">Number of row: </label>
-                <input type="number" id="number" value="100"  min="1" max="5000">
+                <input type="number" id="number" value="100"  min="1">
                 <label for="">Format data: </label>
                 <select name="format" id="format">
                     <option value="JSON">JSON</option>
