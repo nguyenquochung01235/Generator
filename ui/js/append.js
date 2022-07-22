@@ -14,6 +14,7 @@ removeInputElement = function (e) {
     parent.remove();
     var idBtnRemove = $(e).attr("id")
     removeObjectDatatype(idBtnRemove.replace('remove_btn_',''))
+    checkAndSetNumberLine();
 };
 
 removeObjectInputElement = function (e) {
@@ -32,8 +33,7 @@ $("#add-more").click(function (e) {
             $("#main-form").append(
                 `
                 <div class="group-input">
-                <img class="ui-disabled" src="./img/more.jpg">
-    
+                <span class="number-line">x</span>
                     <div class="right-input ui-disabled">
                     
                         <div class="form-group ui-disabled" id="form_group_${idString}" >
@@ -54,11 +54,12 @@ $("#add-more").click(function (e) {
                 </div>
                 `
         );
-            
+        checkAndSetNumberLine()
         }
 
     }
 });
+                // <img class="ui-disabled" src="./img/more.jpg">
 
 
 $("#clear-all").click(function () { 

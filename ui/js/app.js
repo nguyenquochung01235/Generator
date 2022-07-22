@@ -18,7 +18,7 @@ function defaultFormInputElement() {
     
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 1}" >
                         
@@ -52,7 +52,7 @@ function defaultFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 2}" >
                     
@@ -72,7 +72,7 @@ function defaultFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 3}" >
@@ -94,7 +94,7 @@ function defaultFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 4}" >
@@ -124,7 +124,7 @@ function defaultFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 5}" >
@@ -157,6 +157,7 @@ function defaultFormInputElement() {
         $(`#option_1_${idString+4}`).multipleSelect({filter: true})
         $(`#form_group_${idString+4}> .ms-parent >.ms-choice > .placeholder`).text("Select domain");
         $(`#form_group_${idString+4}> .ms-parent`).attr("class", "ms-parent ui-disabled");
+        $(`#form_group_${idString+4}> .ms-parent > .ms-choice`).attr("class", "ms-choice ui-disabled");
         $(`#option_1_${idString+5}`).multipleSelect({filter: true})
         $(`#form_group_${idString+5}> .ms-parent >.ms-choice > .placeholder`).text("Select option");
         $(`#form_group_${idString+5}> .ms-parent`).attr("class", "ms-parent ui-disabled");
@@ -170,7 +171,7 @@ function apiUserFormInputElement() {
     
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 1}" >
                         
@@ -204,7 +205,7 @@ function apiUserFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 2}" >
                     
@@ -224,7 +225,7 @@ function apiUserFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 3}" >
@@ -246,7 +247,7 @@ function apiUserFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 4}" >
@@ -277,7 +278,7 @@ function apiUserFormInputElement() {
 
 
         <div class="group-input">
-                <img class="ui-disabled" src="./img/more.jpg">
+                <span class="number-line">x</span>
     
                     <div class="right-input ui-disabled">
                     
@@ -412,7 +413,7 @@ function productFormInputElement() {
     $("#main-form").append(
         `
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 1}" >
                         
@@ -446,7 +447,7 @@ function productFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 2}" >
                     
@@ -466,7 +467,7 @@ function productFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 3}" >
                     
@@ -489,7 +490,7 @@ function productFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 4}" >
                     
@@ -509,7 +510,7 @@ function productFormInputElement() {
         </div>
 
         <div class="group-input">
-            <img class="ui-disabled" src="./img/more.jpg">
+            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 5}" >
                     
@@ -569,7 +570,7 @@ $("#download").click(function () {
 });
 
 $("#preview").click(function () { 
-    $("#number_of_row").val($("#number").val());
+    $("#number_of_row").val(100);
     $("#format_file").val($("#format").val());
     $("#sql_table_name").val($("#sql").val()); 
 });
@@ -588,24 +589,33 @@ function choseTempalte(e) {
         case "User Information":
             removeTemplate(e);
             defaultFormInputElement();
+            checkAndSetNumberLine();
             break;
         case "API User Testing":
             removeTemplate(e);
             apiUserFormInputElement();
+            checkAndSetNumberLine();
+
             break;
 
         case "Personal Information":
             removeTemplate(e);
             defaultFormInputElement();
+            checkAndSetNumberLine();
+
             break;
 
         case "Product":
             removeTemplate(e);
             productFormInputElement();
+            checkAndSetNumberLine();
+
             break;
     
         default:
             defaultFormInputElement();
+            checkAndSetNumberLine();
+
             break;
     }
 
@@ -624,3 +634,15 @@ initSortTable();
 defaultFormInputElement();
 
 
+$("body").on("mouseout", ".group-input", function(){
+    checkAndSetNumberLine()
+});
+
+function checkAndSetNumberLine(){
+   list = document.getElementsByClassName("number-line");
+   for (let index = 1; index <= list.length; index++) {
+    $(list[index-1]).text(index);
+   }
+   
+}   
+checkAndSetNumberLine()

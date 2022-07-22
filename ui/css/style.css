@@ -22,8 +22,10 @@ button {
 }
 
 .header {
-    background-color: #f27f0c;
+    /* background-color: #f27f0c; */
     /* background-color: #053f5c; */
+    /* background-color: #3c7491; */
+    background-image: linear-gradient(#599cbe, #053f5c);
 
 }
 
@@ -766,4 +768,14 @@ input {
 }
 
 
+.number-line{
+    background-color: #fff;
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 50px;
+    min-width: 32px;
+    min-height: 32px;
+    margin-right: 8px;
+}
 
