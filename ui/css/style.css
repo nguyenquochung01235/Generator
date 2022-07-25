@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700;900&display=swap");
 
+
 * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
+ 
 }
 
 body {
@@ -22,10 +24,10 @@ button {
 }
 
 .header {
-    /* background-color: #f27f0c; */
+    background-color: #f27f0c;
     /* background-color: #053f5c; */
     /* background-color: #3c7491; */
-    background-image: linear-gradient(#599cbe, #053f5c);
+    /* background-image: linear-gradient(#599cbe, #053f5c); */
 
 }
 
@@ -42,6 +44,8 @@ button {
 }
 
 .logo > img {
+    margin-top: -35px;
+
     width: 14rem;
 }
 
@@ -50,14 +54,21 @@ button {
     text-align: center;
     letter-spacing: 4px;
     word-spacing: 5px;
-    margin-top: -25px;
+    margin-top: -35px;
 }
 .title > h1{
-    font-size: 50px;
-
+    font-size: 60px;
+    /* background: linear-gradient(-90deg, #ffffff 0%, #f27f0c 100%); */
+	/* color: transparent; */
+    /* -webkit-background-clip: text; */
+    font-weight: 700;
+    /* text-shadow: 2px 3px 1px #fff; */
+    
 }
 
 .slogan {
+    margin-top: -35px;
+
     text-align: right;
 }
 
@@ -68,8 +79,9 @@ h6 {
 
 .content {
     padding-top: 10px;
-    margin-left:79px ;
-    max-width: 1440px;
+    padding-left:79px ;
+    /* margin-left:79px ; */
+    /* max-width: 1440px; */
     overflow-y: auto;   
     height: 72%;
 }
@@ -562,14 +574,7 @@ input {
     background-color: #ee963e;
 }
 
-@keyframes existen {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
+
 
 /* test */
 .ms-parent {
@@ -777,5 +782,40 @@ input {
     min-width: 32px;
     min-height: 32px;
     margin-right: 8px;
+    line-height: 32px;
 }
 
+@keyframes existen {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes alert {
+    from {
+        border: 3px solid #9b0202;
+    }
+    to {
+        border: none;
+    }
+}
+
+#myProgress {
+    width: 50%;
+    background-color: #ddd;
+    border-radius: 5px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  #myBar {
+    width: 1%;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #f27f0c;
+  }

@@ -3,15 +3,45 @@ const ENV_api_host = "http://127.0.0.1:5000/data/render";
 
 $('#loading').hide();
 
+
+function processBar(numberRow) { 
+  console.log(numberRow)
+  var i = 0;
+    timeDownload = (numberRow / 100000) * 44
+    timeProcess = ((numberRow / 100) / 4.16 + timeDownload);
+  
+    if (i == 0) {
+      i = 1;
+      var elem = document.getElementById("myBar");
+      var width = 1;
+      var id = setInterval(frame, timeProcess);
+    
+      function frame() {
+        if (width >= 100) {
+          clearInterval(id);
+          i = 0;
+        // $('#loading').hide();
+        } else {
+          width++;
+          elem.style.width = width + "%";
+        }
+        
+      }
+    }
+    
+ }
+
+
 function exportToJsonFile(jsonData, fileName) {
   let dataStr = JSON.stringify(jsonData, null,4);
-  let dataUri =
-    "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+  // let dataUri ="data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+
+  let dataUri ="data:application/json;base64," + btoa(dataStr);
 
   let exportFileDefaultName = `${fileName}.json`;
 
   let linkElement = document.createElement("a");
-  linkElement.setAttribute("href", dataUri);
+  linkElement.setAttribute("href", dataUri);  
   linkElement.setAttribute("download", exportFileDefaultName);
   linkElement.click();
 }
@@ -76,6 +106,7 @@ function exportToExcelFile(jsonData, fileName) {
 
 
 
+
 formatXml = function (xml) {
   var formatted = '';
   var reg = /(>)(<)(\/*)/g;
@@ -124,13 +155,25 @@ function exportToXMLFile(jsonData, fileName) {
  }
 
 
+ function exportToCsvFile2(jsonData, fileName) {
+    jsonData = JSON.parse(jsonData)
+    var ws = XLSX.utils.json_to_sheet(jsonData);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Data");
+    XLSX.writeFile(wb,`${fileName}.csv`)
+  
+}
+
+
+
 function generate() {
   if(checkValueType() != false){
     let fileName = $("#file_name").val();
     let typeFile = $("#format").val();
+    let numberOfRow =  $("#number_of_row").val();
     var data_1 = $("#main-form").serialize().replaceAll("'","_").replaceAll("%22","_")
     $('#loading').show();
-    
+    processBar(numberOfRow)
     $.ajax({
       type: "POST",
       url: ENV_api_host,
@@ -160,17 +203,12 @@ function generate() {
           case "CSV":
         
             if(checkDataType() != false){
-              var jsonStr = data;
-              var jsonObj = JSON.parse(jsonStr);
-              var jsonPretty = JSON.stringify(jsonObj, null, "\t");
-              jsonData = JSON.parse(jsonPretty);
-              exportToCsvFile(jsonData, fileName);
+              exportToCsvFile2(data, fileName);
             }
             break;
   
           case "EXCEL":
             var jsonStr = data;
-            var jsonObj = JSON.parse(jsonStr);
             if(checkDataType() != false){
               exportToExcelFile(data, fileName)
             }
@@ -596,3 +634,4 @@ function OBJtoXML(obj) {
     xml = xml.replaceAll('&', '');
   return xml
 }
+

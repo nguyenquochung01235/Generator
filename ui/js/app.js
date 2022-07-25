@@ -18,10 +18,10 @@ function defaultFormInputElement() {
     
 
         <div class="group-input">
-            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
+
                 <div class="form-group ui-disabled" id="form_group_${idString + 1}" >
-                        
+                        <span class="number-line">x</span>
                         <input class="key" name="key_${ idString + 1}" id="key_${ idString + 1}" type="text" placeholder="Key data" value="id">
                         <select class="data_type" name="data_type_${idString+1}" id="data_type_${idString+1}" onchange="addDataTypeOption(this)">
                             <option value="normal">Normal Value</option>
@@ -52,9 +52,9 @@ function defaultFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 2}" >
+            <span class="number-line">x</span>
                     
                     <input class="key" name="key_${ idString + 2}" id="key_${ idString + 2}" type="text" placeholder="Key data" value="username">
                     <select class="data_type" name="data_type_${idString+2}" id="data_type_${idString+2}" onchange="addDataTypeOption(this)">
@@ -72,10 +72,11 @@ function defaultFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 3}" >
+            <span class="number-line">x</span>
+
                     <input class="key" name="key_${ idString + 3}" id="key_${ idString + 3}" type="text" placeholder="Key data" value="password">
                     <select class="data_type" name="data_type_${idString+3}" id="data_type_${idString+3}" onchange="addDataTypeOption(this)">
                         <option value="normal">Normal Value</option>
@@ -94,10 +95,11 @@ function defaultFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 4}" >
+            <span class="number-line">x</span>
+
                     <input class="key" name="key_${ idString + 4}" id="key_${ idString + 4}" type="text" placeholder="Key data" value="email">
                     <select class="data_type" name="data_type_${idString+4}" id="data_type_${idString+4}" onchange="addDataTypeOption(this)">
                         <option value="normal">Normal Value</option>
@@ -124,10 +126,11 @@ function defaultFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 5}" >
+            <span class="number-line">x</span>
+
                     <input class="key" name="key_${ idString + 5}" id="key_${ idString + 5}" type="text" placeholder="" value="phone">
                     <select class="data_type" name="data_type_${idString+5}" id="data_type_${idString+5}" onchange="addDataTypeOption(this)">
                         <option value="normal">Normal Value</option>
@@ -163,6 +166,288 @@ function defaultFormInputElement() {
         $(`#form_group_${idString+5}> .ms-parent`).attr("class", "ms-parent ui-disabled");
 
 };
+
+function personFormInputElement() {
+    var idString = Date.now();
+
+    $("#main-form").append(
+        `
+        <div class="group-input">
+            <div class="right-input ui-disabled">
+            
+                <div class="form-group ui-disabled" id="form_group_${idString+1}">
+                    <span class="number-line">x</span>
+                        
+                    <input class="key" name="key_${idString+1}" id="key_${idString+1}" type="text" placeholder="Key data" value="fullname">
+                    <select class="data_type" name="data_type_${idString+1}" id="data_type_${idString+1}" onchange="addDataTypeOption(this)">
+                        <option value="normal">Normal Value</option>
+                        <option value="array">Array</option>
+                        <option value="object">Object</option>
+                        <option value="arrobj">Array Object</option>
+                    </select>
+                    <select class="value" name="value_type_${idString+1}" id="value_type_${idString+1}" onclick="showValueTypeOptionBox(this)"><option value="Fullname">Fullname</option></select>
+                    <button class="remove" id="remove_btn_${idString+1}" type="button" onclick="removeInputElement(this);">X</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="group-input" style="">
+            <div class="right-input ui-disabled">
+                <div class="form-group ui-disabled" id="form_group_${idString+2}">
+                    <span class="number-line">x</span>
+                    <input class="key" name="key_${idString+2}" id="key_${idString+2}" type="text" placeholder="Key data" value="gender">
+                    <select class="data_type" name="data_type_${idString+2}" id="data_type_${idString+2}" onchange="addDataTypeOption(this)">
+                        <option value="normal">Normal Value</option>
+                        <option value="array">Array</option>
+                        <option value="object">Object</option>
+                        <option value="arrobj">Array Object</option>
+                    </select>
+                    <select class="value" name="value_type_${idString+2}" id="value_type_${idString+2}" onclick="showValueTypeOptionBox(this)"><option value="Gender">Gender</option></select>
+                    <button class="remove" id="remove_btn_${idString+2}" type="button" onclick="removeInputElement(this);">X</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="group-input">
+                    <div class="right-input ui-disabled">
+                        <div class="form-group ui-disabled" id="form_group_${idString+3}">
+                            <span class="number-line">x</span>
+                            <input class="key" name="key_${idString+3}" id="key_${idString+3}" type="text" placeholder="Key data" value="birthday">
+                            <select class="data_type" name="data_type_${idString+3}" id="data_type_${idString+3}" onchange="addDataTypeOption(this)">
+                                <option value="normal">Normal Value</option>
+                                <option value="array">Array</option>
+                                <option value="object">Object</option>
+                                <option value="arrobj">Array Object</option>
+                            </select>
+                            <select class="value" name="value_type_${idString+3}" id="value_type_${idString+3}" onclick="showValueTypeOptionBox(this)"><option value="Date">Date</option></select>
+                            
+                        
+                        <div class="date" id="date_start_${idString+3}">
+                            <p>start</p>
+                            <input type="date" placeholder="dd_mm_yyyy" name="option_1_${idString+3}">
+                        </div>
+                        <div class="date" id="date_end_${idString+3}">
+                            <p>end </p>
+                            <input type="date" placeholder="dd_mm_yyyy" name="option_2_${idString+3}">
+                        </div>
+
+
+                        <div class="date date_format" id="date_format_${idString+3}">
+                            <p>format </p>
+                            <select name="option_3_${idString+3}" id="">
+                                <option value="dd/mm/yyyy">dd/mm/yyyy</option>
+                                <option value="mm/dd/yyyy">mm/dd/yyyy</option>
+                                <option value="dd/Mth/yyyy">dd/Mon/yyyy</option>   
+                                <option value="dd-mm-yyyy">dd-mm-yyyy</option>
+                                <option value="mm-dd-yyyy">mm-dd-yyyy</option>
+                                <option value="dd-Mth-yyyy">dd-Mon-yyyy</option>
+                                <option value="dd.mm.yyyy">dd.mm.yyyy</option>
+                                <option value="mm.dd.yyyy">mm.dd.yyyy</option>
+                                <option value="dd.Mth.yyyy">dd.Mon.yyyy</option>
+                                <option value="sqltime">SQL Time</option>
+                            </select>
+                        </div>
+                        <button class="remove" id="remove_btn_${idString+3}" type="button" onclick="removeInputElement(this);">X</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="group-input">
+                    <div class="right-input ui-disabled">
+                        <div class="form-group ui-disabled" id="form_group_${idString+4}">
+                            <span class="number-line">x</span>
+                            <input class="key" name="key_${idString+4}" id="key_${idString+4}" type="text" placeholder="Key data" value="address">
+                            <select class="data_type" name="data_type_${idString+4}" id="data_type_${idString+4}" onchange="addDataTypeOption(this)">
+                                <option value="normal">Normal Value</option>
+                                <option value="array">Array</option>
+                                <option value="object">Object</option>
+                                <option value="arrobj">Array Object</option>
+                            </select>
+                            <select class="value" name="value_type_${idString+4}" id="value_type_${idString+4}" onclick="showValueTypeOptionBox(this)"><option value="Street Name And Address">Street Name And Address</option></select>
+                            <button class="remove" id="remove_btn_${idString+4}" type="button" onclick="removeInputElement(this);">X</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="group-input">
+
+            <div class="right-input ui-disabled">
+                <div class="form-group ui-disabled" id="form_group_${idString + 5}" >
+            <span class="number-line">x</span>
+
+                    <input class="key" name="key_${ idString + 5}" id="key_${ idString + 5}" type="text" placeholder="" value="phone">
+                    <select class="data_type" name="data_type_${idString+5}" id="data_type_${idString+5}" onchange="addDataTypeOption(this)">
+                        <option value="normal">Normal Value</option>
+                        <option value="array">Array</option>
+                        <option value="object">Object</option>
+                        <option value="arrobj">Array Object</option>
+                    </select>
+                    <select class="value" name="value_type_${idString+5}" id="value_type_${idString+5}" onclick="showValueTypeOptionBox(this)">
+                        <option value="Phone Number">Phone Number</option>
+                    </select>
+                    <select id="option_1_${idString+5}" name="option_1_${idString+5}[]" multiple="multiple">
+                        <option value="0## ### ####">0## ### ####</option>
+                        <option value="0##-###-####">0##-###-####</option>
+                        <option value="(0##)###-####">(0##)###-####</option>
+                        <option value="+84 ### ### ###">+84 ### ### ###</option>
+                        <option value="0#########">0#########</option>
+                    </select>
+                    <button class="remove" id="remove_btn_${idString+5}" type="button" onClick="removeInputElement(this);">X</button>
+        
+                </div>
+            </div>
+        </div>
+
+
+        <div class="group-input">
+
+            <div class="right-input ui-disabled">
+                <div class="form-group ui-disabled" id="form_group_${idString + 6}" >
+            <span class="number-line">x</span>
+
+                    <input class="key" name="key_${ idString + 6}" id="key_${ idString + 6}" type="text" placeholder="Key data" value="email">
+                    <select class="data_type" name="data_type_${idString + 6}" id="data_type_${idString + 6}" onchange="addDataTypeOption(this)">
+                        <option value="normal">Normal Value</option>
+                        <option value="array">Array</option>
+                        <option value="object">Object</option>
+                        <option value="arrobj">Array Object</option>
+                    </select>
+                    <select class="value" name="value_type_${idString + 6}" id="value_type_${idString + 6}" onclick="showValueTypeOptionBox(this)">
+                        <option value="Email">Email</option>
+                    </select>
+                    <select class="ui-disabled"  id="option_1_${idString + 6}" name="option_1_${idString + 6}[]" multiple="multiple">
+                        <option value="hostmail">@hostmail.com</option>
+                        <option value="gmail">@gmail.com</option>
+                        <option value="outlook">@outlook.com</option>
+                        <option value="yahoo">@yahoo.com</option>
+                        <option value="iclound">@iclound.com</option>
+                        <option value="example">@example.com</option>
+                        
+                    </select>
+                      
+                    <button class="remove" id="remove_btn_${idString + 6}" type="button" onClick="removeInputElement(this);">X</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="group-input">
+            <div class="right-input ui-disabled">
+                <div class="form-group ui-disabled" id="form_group_${idString+7}">
+                    <span class="number-line">7</span>
+                    <input class="key" name="key_${idString+7}" id="key_${idString+7}" type="text" placeholder="Key data" value="nationality">
+                    <select class="data_type" name="data_type_${idString+7}" id="data_type_${idString+7}" onchange="addDataTypeOption(this)">
+                        <option value="normal">Normal Value</option>
+                        <option value="array">Array</option>
+                        <option value="object">Object</option>
+                        <option value="arrobj">Array Object</option>
+                    </select>
+                    <select class="value" name="value_type_${idString+7}" id="value_type_${idString+7}" onclick="showValueTypeOptionBox(this)"><option value="Country">Country</option></select>
+                    <button class="remove" id="remove_btn_${idString+7}" type="button" onclick="removeInputElement(this);">X</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="group-input">
+            <div class="right-input ui-disabled">
+            
+                <div class="form-group ui-disabled" id="form_group_${idString+8}">
+                        <span class="number-line">8</span>
+                    <input class="key" name="key_${idString+8}" id="key_${idString+8}" type="text" placeholder="Key data" value="bank_card">
+                    <select class="data_type" name="data_type_${idString+8}" id="data_type_${idString+8}" onchange="addDataTypeOption(this)">
+                        <option value="normal">Normal Value</option>
+                        <option value="array">Array</option>
+                        <option value="object">Object</option>
+                        <option value="arrobj">Array Object</option>
+                    </select>
+                    <select class="value" name="value_type_${idString+8}" id="value_type_${idString+8}" onclick="showValueTypeOptionBox(this)"><option value="Credit Card">Credit Card</option></select>
+                    <select id="option_1_${idString+8}" name="option_1_${idString+8}[]" multiple="multiple" style="display: none;">
+                        <option value="visa">Visa</option>
+                        <option value="mastercard">Master Card</option>
+                        <option value="americanexpress">American Express</option>
+                        <option value="jcb">JCB</option>
+                        <option value="bankcard">Bankcard</option>
+                    </select>
+                    <button class="remove" id="remove_btn_${idString+8}" type="button" onclick="removeInputElement(this);">X</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="group-input" style="">
+            <div class="right-input ui-disabled">
+                <div class="form-group ui-disabled" id="form_group_${idString+9}">
+                    <span class="number-line">9</span>
+                    <input class="key" name="key_${idString+9}" id="key_${idString+9}" type="text" placeholder="Key data" value="company">
+                    <select class="data_type" name="data_type_${idString+9}" id="data_type_${idString+9}" onchange="addDataTypeOption(this)">
+                        <option value="normal">Normal Value</option>
+                        <option value="array">Array</option>
+                        <option value="object">Object</option>
+                        <option value="arrobj">Array Object</option>
+                    </select>
+                    <select class="value" name="value_type_${idString+9}" id="value_type_${idString+9}" onclick="showValueTypeOptionBox(this)"><option value="Company Name">Company Name</option></select>
+                    <button class="remove" id="remove_btn_${idString+9}" type="button" onclick="removeInputElement(this);">X</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="group-input">
+            <div class="right-input ui-disabled">
+                <div class="form-group ui-disabled" id="form_group_${idString+10}">
+                    <span class="number-line">10</span>
+                    <input class="key" name="key_${idString+10}" id="key_${idString+10}" type="text" placeholder="Key data" value="job_title">
+                    <select class="data_type" name="data_type_${idString+10}" id="data_type_${idString+10}" onchange="addDataTypeOption(this)">
+                        <option value="normal">Normal Value</option>
+                        <option value="array">Array</option>
+                        <option value="object">Object</option>
+                        <option value="arrobj">Array Object</option>
+                    </select>
+                    <select class="value" name="value_type_${idString+10}" id="value_type_${idString+10}" onclick="showValueTypeOptionBox(this)"><option value="Job Title">Job Title</option></select>
+                    <button class="remove" id="remove_btn_${idString+10}" type="button" onclick="removeInputElement(this);">X</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="group-input">
+                    <div class="right-input ui-disabled">
+                        <div class="form-group ui-disabled" id="form_group_${idString+1}">
+                            <span class="number-line">11</span>
+                            <input class="key" name="key_${idString+1}" id="key_${idString+1}" type="text" placeholder="Key data" value="salary">
+                            <select class="data_type" name="data_type_${idString+1}" id="data_type_${idString+1}" onchange="addDataTypeOption(this)">
+                                <option value="normal">Normal Value</option>
+                                <option value="array">Array</option>
+                                <option value="object">Object</option>
+                                <option value="arrobj">Array Object</option>
+                            </select>
+                            <select class="value" name="value_type_${idString+1}" id="value_type_${idString+1}" onclick="showValueTypeOptionBox(this)"><option value="Number">Number</option></select>
+                            <input class="custom-1" name="option_1_${idString+1}" id="option_1_${idString+1}" type="number" placeholder="From" value=1000>
+                            <input class="custom-1" name="option_2_${idString+1}" id="option_2_${idString+1}" type="number" placeholder="To" value=50000>
+                            
+                            <button class="remove" id="remove_btn_${idString+1}" type="button" onclick="removeInputElement(this);">X</button>
+                        </div>
+                    </div>
+                </div>
+
+        `
+    );
+    $(`#option_1_${idString+5}`).multipleSelect({filter: true})
+    $(`#form_group_${idString+5}> .ms-parent >.ms-choice > .placeholder`).text("Select option");
+    $(`#form_group_${idString+5}> .ms-parent`).attr("class", "ms-parent ui-disabled");
+    $(`#option_1_${idString+6}`).multipleSelect({filter: true})
+    $(`#form_group_${idString+6}> .ms-parent >.ms-choice > .placeholder`).text("Select domain");
+    $(`#form_group_${idString+6}> .ms-parent`).attr("class", "ms-parent ui-disabled");
+    $(`#form_group_${idString+6}> .ms-parent > .ms-choice`).attr("class", "ms-choice ui-disabled");
+    $(`#option_1_${idString+8}`).multipleSelect({filter: true})
+    $(`#form_group_${idString+8}> .ms-parent >.ms-choice > .placeholder`).text("Select domain");
+    $(`#form_group_${idString+8}> .ms-parent`).attr("class", "ms-parent ui-disabled");
+    $(`#form_group_${idString+8}> .ms-parent > .ms-choice`).attr("class", "ms-choice ui-disabled");
+
+}
+
+
 function apiUserFormInputElement() {
     var idString = Date.now();
 
@@ -171,9 +456,9 @@ function apiUserFormInputElement() {
     
 
         <div class="group-input">
-            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 1}" >
+            <span class="number-line">x</span>
                         
                         <input class="key" name="key_${ idString + 1}" id="key_${ idString + 1}" type="text" placeholder="Key data" value="id">
                         <select class="data_type" name="data_type_${idString+1}" id="data_type_${idString+1}" onchange="addDataTypeOption(this)">
@@ -205,9 +490,9 @@ function apiUserFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 2}" >
+            <span class="number-line">x</span>
                     
                     <input class="key" name="key_${ idString + 2}" id="key_${ idString + 2}" type="text" placeholder="Key data" value="username">
                     <select class="data_type" name="data_type_${idString+2}" id="data_type_${idString+2}" onchange="addDataTypeOption(this)">
@@ -225,10 +510,11 @@ function apiUserFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 3}" >
+            <span class="number-line">x</span>
+
                     <input class="key" name="key_${ idString + 3}" id="key_${ idString + 3}" type="text" placeholder="Key data" value="password">
                     <select class="data_type" name="data_type_${idString+3}" id="data_type_${idString+3}" onchange="addDataTypeOption(this)">
                         <option value="normal">Normal Value</option>
@@ -247,10 +533,11 @@ function apiUserFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
 
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 4}" >
+            <span class="number-line">x</span>
+
                     <input class="key" name="key_${ idString + 4}" id="key_${ idString + 4}" type="text" placeholder="Key data" value="email">
                     <select class="data_type" name="data_type_${idString+4}" id="data_type_${idString+4}" onchange="addDataTypeOption(this)">
                         <option value="normal">Normal Value</option>
@@ -278,11 +565,11 @@ function apiUserFormInputElement() {
 
 
         <div class="group-input">
-                <span class="number-line">x</span>
     
                     <div class="right-input ui-disabled">
                     
                         <div class="form-group ui-disabled" id="form_group_${idString}">
+                <span class="number-line">x</span>
                                 
                             <input class="key" name="key_${idString}" id="key_${idString}" type="text" placeholder="Key data" value="personality">
                             <select class="data_type" name="data_type_${idString}" id="data_type_${idString}" onchange="addDataTypeOption(this)">
@@ -413,9 +700,9 @@ function productFormInputElement() {
     $("#main-form").append(
         `
         <div class="group-input">
-            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 1}" >
+            <span class="number-line">x</span>
                         
                         <input class="key" name="key_${ idString + 1}" id="key_${ idString + 1}" type="text" placeholder="Key data" value="product_id">
                         <select class="data_type" name="data_type_${idString+1}" id="data_type_${idString+1}" onchange="addDataTypeOption(this)">
@@ -447,9 +734,9 @@ function productFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 2}" >
+            <span class="number-line">x</span>
                     
                     <input class="key" name="key_${ idString + 2}" id="key_${ idString + 2}" type="text" placeholder="Key data" value="product_name">
                     <select class="data_type" name="data_type_${idString+2}" id="data_type_${idString+2}" onchange="addDataTypeOption(this)">
@@ -467,9 +754,9 @@ function productFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 3}" >
+            <span class="number-line">x</span>
                     
                     <input class="key" name="key_${ idString + 3}" id="key_${ idString + 3}" type="text" placeholder="Key data" value="price">
                     <select class="data_type" name="data_type_${idString+3}" id="data_type_${idString+3}" onchange="addDataTypeOption(this)">
@@ -490,9 +777,9 @@ function productFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 4}" >
+            <span class="number-line">x</span>
                     
                     <input class="key" name="key_${ idString + 4}" id="key_${ idString + 4}" type="text" placeholder="Key data" value="thumb">
                     <select class="data_type" name="data_type_${idString+4}" id="data_type_${idString+4}" onchange="addDataTypeOption(this)">
@@ -510,9 +797,9 @@ function productFormInputElement() {
         </div>
 
         <div class="group-input">
-            <span class="number-line">x</span>
             <div class="right-input ui-disabled">
                 <div class="form-group ui-disabled" id="form_group_${idString + 5}" >
+            <span class="number-line">x</span>
                     
                     <input class="key" name="key_${ idString + 5}" id="key_${ idString + 5}" type="text" placeholder="Key data" value="description">
                     <select class="data_type" name="data_type_${idString+5}" id="data_type_${idString+5}" onchange="addDataTypeOption(this)">
@@ -600,7 +887,7 @@ function choseTempalte(e) {
 
         case "Personal Information":
             removeTemplate(e);
-            defaultFormInputElement();
+            personFormInputElement();
             checkAndSetNumberLine();
 
             break;

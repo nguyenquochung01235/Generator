@@ -25,6 +25,11 @@ removeObjectInputElement = function (e) {
 
 $("#add-more").click(function (e) {
     let numberField = $("#number-row-of-field").val();
+    if(numberField >= 100){
+        alert("Maximum number of fields is 100 !")
+        numberField = 100
+        $("#number-row-of-field").val(100)
+    }
     if(numberField <=0){
         alert("Number of fields must be greater than 0 !")
     }else{
@@ -33,10 +38,10 @@ $("#add-more").click(function (e) {
             $("#main-form").append(
                 `
                 <div class="group-input">
-                <span class="number-line">x</span>
                     <div class="right-input ui-disabled">
                     
                         <div class="form-group ui-disabled" id="form_group_${idString}" >
+                <span class="number-line">x</span>
                                 
                             <input class="key" name="key_${ idString}" id="key_${ idString}" type="text" placeholder="Key data">
                             <select class="data_type" name="data_type_${idString}" id="data_type_${idString}" onchange="addDataTypeOption(this)">
@@ -309,7 +314,7 @@ showValueTypeOptionBox = function (e) {
                 </div>
                 
                 <div class="type-option" aria-label="Technology" onclick="getAndAppendValueType(this,'${idString}')" >
-                    <h4>Progaming Language</h4>
+                    <h4>Programming Language</h4>
                     <p>PHP, Python, Javascript</p>
                 </div>
                 

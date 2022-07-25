@@ -273,7 +273,7 @@ class api():
 
 	###API for random userName ###
 	def random_username(self, args= [], db = database()):
-		return (self.random_firstname()[0].lower() + self.random_lastname().lower() + str(random.randint(1, 99))).replace(" ","")
+		return (self.random_firstname()[0].lower()+self.random_firstname()[1].lower() + self.random_lastname().lower() + str(random.randint(1, 999))).replace(" ","")
 
 	###API for random Age ###
 	def random_age(self, args= [], db = database()):
@@ -610,7 +610,7 @@ class api():
 		lenofStr = args[2]
 
 		if staic == "" and dynamic == "" and lenofStr == "":
-			return self.random_number(args=[0,99999999])
+			return self.random_number(args=[0,9999999999])
 		else:
 			random_template = ""
 			if "numberrow" in dynamic:
@@ -620,7 +620,7 @@ class api():
 			if "character" in dynamic:
 				random_template += string.ascii_uppercase
 			if dynamic == "":
-				return self.random_number(args=[0, 99999999])
+				return self.random_number(args=[0, 9999999999])
 
 			if lenofStr == "":
 				lenofStr = 0
