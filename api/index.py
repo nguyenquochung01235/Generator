@@ -145,7 +145,8 @@ def generate_json_format(tmpdata):
 
 							elif tmp["dataType"] == "array":
 								subobj.createArrayData(tmp["keyName"])
-								subobj.updateArrayData(tmp["keyName"], get_random_value(tmp))
+								for i in range(int(tmp["option"][0])):
+									subobj.updateArrayData(tmp["keyName"], get_random_value(tmp))
 					if subobj.data:
 						obj_dataStructure.updateArrayData(element["keyName"], subobj.data)
 
