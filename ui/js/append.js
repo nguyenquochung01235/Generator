@@ -407,14 +407,6 @@ showValueTypeOptionBox = function (e) {
 
                 <div class="type-option" onclick="getAndAppendValueType(this,'${idString}')" >
 
-                    <h4>Custome_name</h4>
-
-                    <p>Customize data from user</p>
-
-                </div>
-
-                <div class="type-option" onclick="getAndAppendValueType(this,'${idString}')" >
-
                     <h4>Customize</h4>
 
                     <p>Customize data from user</p>
