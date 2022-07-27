@@ -158,6 +158,7 @@ createNewDataSet = function(){
           dataForm: dataCreate,
         },
         success: function (data) {
+          alert("Add new dataset successfully !")
           location.reload();
         }
     })

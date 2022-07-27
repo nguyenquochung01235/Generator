@@ -666,3 +666,4 @@ class api():
 	###API for random foodproduct ###
 	def random_foodproduct(self, args= [], db = database()):
 		return random.choice(db.foodproduct)
+

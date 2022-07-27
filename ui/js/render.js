@@ -80,6 +80,7 @@ appendNormalType = function (id) {
     $(`#option_1_${returnIDOption(id)}`).multipleSelect({
         filter: true
     });
+    $(".ms-drop").addClass("ui-disabled")
     setPlaceholder(id,'Select domain')
 };
 
@@ -159,6 +160,7 @@ appendCreditCardType = function (id) {
     $(`#option_1_${returnIDOption(id)}`).multipleSelect({
         filter: true
     });
+    $(".ms-drop").addClass("ui-disabled")
    
     setPlaceholder(id,'Select Credit Card Type')
    
@@ -198,6 +200,8 @@ appendRandomNumberType = function (id) {
     $(`#option_1_${returnIDOption(id)}`).multipleSelect({
         filter: true
     });
+    $(".ms-drop").addClass("ui-disabled")
+
     setPlaceholder(id,'Select seperator')
 };
 
@@ -238,6 +242,8 @@ appendPasswordType = function (id) {
     $(`#option_1_${returnIDOption(id)}`).multipleSelect({
         filter: true
     });
+    $(".ms-drop").addClass("ui-disabled")
+
     setPlaceholder(id,'Select option')
 };
 
@@ -304,6 +310,8 @@ appendYearType = function (id) {
     $(`#option_1_${returnIDOption(id)}`).multipleSelect({
         filter: true
     });
+    $(".ms-drop").addClass("ui-disabled")
+
     setPlaceholder(id,'Select format')
 };
 

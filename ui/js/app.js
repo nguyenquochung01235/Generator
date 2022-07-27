@@ -869,6 +869,9 @@ function removeTemplate(e) {
     $(e).css("background-color", "#f27f0c");
  }
 
+ function addUiDisabled(){
+    $(".ms-drop").addClass("ui-disabled")
+ }
 
 function choseTempalte(e) { 
     key = $(e).text();
@@ -877,32 +880,33 @@ function choseTempalte(e) {
             removeTemplate(e);
             defaultFormInputElement();
             checkAndSetNumberLine();
+            addUiDisabled();
             break;
         case "API User Testing":
             removeTemplate(e);
             apiUserFormInputElement();
             checkAndSetNumberLine();
-
+            addUiDisabled();
             break;
 
         case "Personal Information":
             removeTemplate(e);
             personFormInputElement();
             checkAndSetNumberLine();
-
+            addUiDisabled();
             break;
 
         case "Product":
             removeTemplate(e);
             productFormInputElement();
             checkAndSetNumberLine();
-
+            addUiDisabled();
             break;
     
         default:
             defaultFormInputElement();
             checkAndSetNumberLine();
-
+            addUiDisabled();
             break;
     }
 
@@ -919,6 +923,7 @@ function initSortTable() {
 
 initSortTable();
 defaultFormInputElement();
+addUiDisabled();
 
 
 $("body").on("mouseout", ".group-input", function(){
