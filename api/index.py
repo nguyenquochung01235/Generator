@@ -279,6 +279,45 @@ def render_data():
 		return export_json_file(result)
 
 
+@app.route("/debug", methods=["GET"])
+@cross_origin()
+def debug_data():
+	data = "number_of_row=100&format_file=JSON&sql_table_name=&key_1662451751584=id&data_type_1662451751584=normal&value_type_1662451751584=ID&option_1_1662451751584=&option_2_1662451751584=&option_3_1662451751584=&key_1662451751585=username&data_type_1662451751585=normal&value_type_1662451751585=Username&key_1662451751586=password&data_type_1662451751586=normal&value_type_1662451751586=Password&option_1_1662451751586=8&option_2_1662451751586=12&key_1662451751587=email&data_type_1662451751587=normal&value_type_1662451751587=Email&key_1662451751588=phone&data_type_1662451751588=normal&value_type_1662451751588=Phone%20Number"
+	result = []
+	try:
+		if db_changed:
+			pass
+	except:
+		global db
+		db = database()
+
+	number_of_row = re.split("&", data)[0]
+	number_of_row = int(re.findall("=\d*", number_of_row)[0][1:])
+
+	format_file = re.split("&", data)[1]
+	format_file = re.findall("=\w*", format_file)[0][1:]
+
+	try:
+		table_name = re.split("&", data)[2]
+		table_name = re.findall("=\w*", table_name)[0][1:]
+	except:
+		table_name = ""
+	for i in range(number_of_row):
+		element = generate_json_format(data).format_data()
+		result.append(element)
+
+	if format_file == "JSON":
+		return export_json_file(result)
+	elif format_file == "SQL":
+		return export_sql_file(result, table_name)
+	elif format_file == "CSV":
+		return export_json_file(result)
+	elif format_file == "EXCEL":
+		return export_json_file(result)
+	elif format_file == "XML":
+		return export_json_file(result)
+
+
 @app.route("/updatedb", methods = ["POST"])
 @cross_origin()
 def update_database():
