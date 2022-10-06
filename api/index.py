@@ -9,16 +9,43 @@ from random_functions import api
 from dataStructure import dataStructure
 from db import database
 
+def find_key_parent(lField):
+	for i in reversed(range(len(lField))):
+		if lField[i]["dataType"] == "object":
+			return lField[i]["keyName"]
+	return "root"
+
+def creataSubObject(element):
+	subobj = dataStructure()
+	if element["dataType"] == "normal":
+		subobj.createCommonData(element["keyName"])
+		subobj.updateCommonData(element["keyName"], get_random_value(element))
+
+	elif element["dataType"] == "array":
+		subobj.createArrayData(element["keyName"])
+		for i in range(int(element["option"][0])):
+			subobj.updateArrayData(element["keyName"], get_random_value(element))
+	else:
+		subobj.createObjectData(element["keyName"])
+		sub_lv2 = None
+		for obj in lField:
+			if obj["parent"] == element["keyName"]:
+				sub_lv2 = creataSubObject(obj)
+				break
+		subobj.updateObjectData(element["keyName"], sub_lv2.data)
+
+	return subobj
+
+
 def createField(data):
 	lField = []
 	tmp_data = {}
-	tmpKey = ""
 	for i in range(len(data)):
 
 		if isKeyObject(data[i]):
 			tmp_data.update({"keyName": get_keyname(data[i]).replace(" ", "_")})
 			tmp_data.update({"dataType": get_datatype(data[i + 1])})
-			key_parent = tmpKey
+			key_parent = find_key_parent(lField)
 			try:
 				tmp_data.update({"valueType": get_valuetype(data[i + 2]).lower()})
 			except:
@@ -103,6 +130,7 @@ def generate_json_format(tmpdata):
 
 	obj_dataStructure = dataStructure()
 
+	global lField
 	lField = createField(data)
 
 	for element in lField:
@@ -121,14 +149,9 @@ def generate_json_format(tmpdata):
 				subobj = dataStructure()
 				for tmp in lField:
 					if tmp["parent"] == element["keyName"]:
-						if tmp["dataType"] == "normal":
-							subobj.createCommonData(tmp["keyName"])
-							subobj.updateCommonData(tmp["keyName"], get_random_value(tmp))
+						sub = creataSubObject(tmp)
+						obj_dataStructure.updateObjectData(element["keyName"],sub.data)
 
-						elif tmp["dataType"] == "array":
-							subobj.createArrayData(tmp["keyName"])
-							for i in range(int(tmp["option"][0])):
-								subobj.updateArrayData(tmp["keyName"], get_random_value(tmp))
 					if subobj.data:
 						obj_dataStructure.updateObjectData(element["keyName"], subobj.data)
 
@@ -262,11 +285,13 @@ def render_data():
 		table_name = re.findall("=\w*", table_name)[0][1:]
 	except:
 		table_name = ""
+
+	print("[INFO]:\tGenerating data")
 	for i in range(number_of_row):
 		element = generate_json_format(data).format_data()
 		result.append(element)
 
-	
+	print("[INFO]:\tExporting to" + format_file + " format")
 	if format_file == "JSON":
 		return export_json_file(result)
 	elif format_file == "SQL":
@@ -282,7 +307,8 @@ def render_data():
 @app.route("/debug", methods=["GET"])
 @cross_origin()
 def debug_data():
-	data = "number_of_row=100&format_file=JSON&sql_table_name=&key_1662451751584=id&data_type_1662451751584=normal&value_type_1662451751584=ID&option_1_1662451751584=&option_2_1662451751584=&option_3_1662451751584=&key_1662451751585=username&data_type_1662451751585=normal&value_type_1662451751585=Username&key_1662451751586=password&data_type_1662451751586=normal&value_type_1662451751586=Password&option_1_1662451751586=8&option_2_1662451751586=12&key_1662451751587=email&data_type_1662451751587=normal&value_type_1662451751587=Email&key_1662451751588=phone&data_type_1662451751588=normal&value_type_1662451751588=Phone%20Number"
+	data = "number_of_row=1&format_file=JSON&sql_table_name=&key_1662705086205=id&data_type_1662705086205=normal&value_type_1662705086205=ID&option_1_1662705086205=&option_2_1662705086205=&option_3_1662705086205=&key_1662705086206=username&data_type_1662705086206=object&key_object_1662705086206=12&data_type_object_1662705086206=object&key_object_object_1662705086206=13&data_type_object_object_1662705086206=object&key_object_object_object_1662705086206=14&data_type_object_object_object_1662705086206=normal&value_type_object_object_object_1662705086206=Color&key_1662705086207=password&data_type_1662705086207=normal&value_type_1662705086207=Password&option_1_1662705086207=8&option_2_1662705086207=12&key_1662705086208=email&data_type_1662705086208=normal&value_type_1662705086208=Email&key_1662705086209=phone&data_type_1662705086209=normal&value_type_1662705086209=Phone%20Number"
+
 	result = []
 	try:
 		if db_changed:
